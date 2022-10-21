@@ -3,7 +3,7 @@
 
 #include "peripherals/base.h"
 
-#define TBASE (PBASE+0xB000)
+#define TBASE (PBASE+0x0000B000)
 
 //******************************************************************************
 // Timer (ARM side) described in pg 196 of the BCM2835 ARM Peripherals Manual
