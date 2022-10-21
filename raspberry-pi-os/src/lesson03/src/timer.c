@@ -3,7 +3,7 @@
 #include "peripherals/timer.h"
 #include "peripherals/arm_timer.h"
 
-const unsigned int interval = 200000;
+const unsigned int interval = 2000;
 unsigned int curVal = 0;
 
 void timer_init ( void )
@@ -30,6 +30,5 @@ void arm_timer_init ( void )
 void handle_arm_timer_irq ( void )
 {
 	put32(ARM_TIMER_IRQ_CA, 1);
-	put32(ARM_TIMER_LOAD, interval);
-	printf("ARM Timer Interrupt Recieved");
+	printf("ARM Timer Interrupt Recieved\n\r");
 }

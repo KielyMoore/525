@@ -19,8 +19,9 @@
 
 
 #define ATCTRL_32BIT        (1 << 1)
+#define ATCTRL_PRESCALER    (2 << 2)
 #define ATCTRL_IR_EN        (1 << 5)
 #define ATCTRL_ENABLE       (1 << 7)
-#define ARM_TIMER_CTRL_VAL  (ATCTRL_32BIT | ATCTRL_IR_EN | ATCTRL_ENABLE)
+#define ARM_TIMER_CTRL_VAL  (ATCTRL_32BIT | ATCTRL_PRESCALER | ATCTRL_IR_EN | ATCTRL_ENABLE)
 
 #endif
