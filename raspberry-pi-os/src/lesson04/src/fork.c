@@ -22,6 +22,7 @@ int copy_process(unsigned long fn, unsigned long arg)
 	p->cpu_context.sp = (unsigned long)p + THREAD_SIZE;
 	int pid = nr_tasks++;
 	task[pid] = p;	
+	
 
 	printf("\n\r===== Task: %d =====\n\r", pid);
 	printf("* Address: 0x%08x\n\r", p);
