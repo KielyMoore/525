@@ -1,6 +1,7 @@
 #include "mm.h"
 #include "sched.h"
 #include "entry.h"
+#include "printf.h"
 
 int copy_process(unsigned long fn, unsigned long arg)
 {
