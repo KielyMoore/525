@@ -22,5 +22,14 @@ int copy_process(unsigned long fn, unsigned long arg)
 	int pid = nr_tasks++;
 	task[pid] = p;	
 	preempt_enable();
+
+	printf("Priority: " + p->priority);
+	printf("State: " + p->state);
+	printf("Conter: " + p->counter);
+	printf("Cpu_Context.x19: " + p->cpu_context.x19);
+	printf("Cpu_Context.x20: " + p->cpu_context.x20);
+	printf("Cpu_Context.pc: " + p->cpu_context.pc);
+	printf("Cpu_Context.sp: " + p->cpu_context.sp);
+
 	return 0;
 }
