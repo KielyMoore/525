@@ -43,6 +43,9 @@ void _schedule(void)
 			}
 		}
 	}
+	if(task[next] != current){
+		printf("schedule switched to %d\r\n", next);
+	}
 	switch_to(task[next]);
 	preempt_enable();
 }

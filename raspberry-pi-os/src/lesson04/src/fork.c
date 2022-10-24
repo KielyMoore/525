@@ -22,7 +22,7 @@ int copy_process(unsigned long fn, unsigned long arg)
 	p->cpu_context.sp = (unsigned long)p + THREAD_SIZE;
 	int pid = nr_tasks++;
 	task[pid] = p;	
-	preempt_enable();
+	
 
 	printf("Priority: " + p->priority);
 	printf("State: " + p->state);
@@ -32,5 +32,6 @@ int copy_process(unsigned long fn, unsigned long arg)
 	printf("Cpu_Context.pc: " + p->cpu_context.pc);
 	printf("Cpu_Context.sp: " + p->cpu_context.sp);
 
+	preempt_enable();
 	return 0;
 }
