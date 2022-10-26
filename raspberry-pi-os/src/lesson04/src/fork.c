@@ -32,7 +32,7 @@ int copy_process(unsigned long fn, unsigned long arg)
 		printf("* State: Running\n\r");
 		break;
 	default:
-		printf("* State: Unkown\n\r");
+		printf("* State: Unknown\n\r");
 		break;
 	}
 	printf("* Priority: %x\n\r", p->priority);

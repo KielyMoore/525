@@ -45,6 +45,24 @@ void _schedule(void)
 	}
 	if(task[next] != current){
 		printf("schedule switched to %d\r\n", next);
+		printf("\n\r===== Task: %d =====\n\r", next);
+		printf("* Address: 0x%08x\n\r", task[next]);
+		switch (task[next]->state)
+		{
+			case TASK_RUNNING:
+				printf("* State: Running\n\r");
+				break;
+			default:
+				printf("* State: Unknown\n\r");
+				break;
+		}
+		printf("* Priority: %x\n\r", task[next]->priority);
+		printf("* Conter: %x\n\r", task[next]->counter);
+		printf("* Cpu_Context.x19: 0x%08x\n\r", task[next]->cpu_context.x19);
+		printf("* Cpu_Context.x20: 0x%08x\n\r", task[next]->cpu_context.x20);
+		printf("* Cpu_Context.pc: 0x%08x\n\r", task[next]->cpu_context.pc);
+		printf("* Cpu_Context.sp: 0x%08x\n\r", task[next]->cpu_context.sp);
+		printf("===================\n\r\n\r");
 	}
 	switch_to(task[next]);
 	preempt_enable();
@@ -58,14 +76,6 @@ void schedule(void)
 
 void switch_to(struct task_struct * next) 
 {
-	struct task_struct *t;
-	for(int i=0; i< NR_TASKS; i++){
-		t = task[i];
-		printf("\n\rTask %d counter: %d\n\r", i, t->counter);
-		printf("Task %d priority: %d\n\r", i, t->priority);
-		printf("Task %d preempt count: %d\n\r", i, t->preempt_count);
-		printf("Task %d sp: %d\n\r", i, t->sp);
-	}
 	if (current == next) 
 		return;
 	struct task_struct * prev = current;
