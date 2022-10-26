@@ -55,6 +55,14 @@ void schedule(void)
 
 void switch_to(struct task_struct * next) 
 {
+	struct task_struct *t;
+	for(int i=0; i< NR_TASKS; i++){
+		t = task[i];
+		printf("\n\rTask %d counter: %d\n\r", i, t->counter);
+		printf("Task %d priority: %d\n\r", i, t->priority);
+		printf("Task %d preempt count: %d\n\r", i, t->preempt_count);
+		printf("Task %d sp: %d\n\r", i, t->sp);
+	}
 	if (current == next) 
 		return;
 	struct task_struct * prev = current;
