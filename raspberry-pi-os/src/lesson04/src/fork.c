@@ -22,15 +22,27 @@ int copy_process(unsigned long fn, unsigned long arg)
 	p->cpu_context.sp = (unsigned long)p + THREAD_SIZE;
 	int pid = nr_tasks++;
 	task[pid] = p;	
+	
+
+	printf("\n\r===== Task: %d =====\n\r", pid);
+	printf("* Address: 0x%08x\n\r", p);
+	switch (p->state)
+	{
+	case TASK_RUNNING:
+		printf("* State: Running\n\r");
+		break;
+	default:
+		printf("* State: Unkown\n\r");
+		break;
+	}
+	printf("* Priority: %x\n\r", p->priority);
+	printf("* Conter: %x\n\r", p->counter);
+	printf("* Cpu_Context.x19: 0x%08x\n\r", p->cpu_context.x19);
+	printf("* Cpu_Context.x20: 0x%08x\n\r", p->cpu_context.x20);
+	printf("* Cpu_Context.pc: 0x%08x\n\r", p->cpu_context.pc);
+	printf("* Cpu_Context.sp: 0x%08x\n\r", p->cpu_context.sp);
+	printf("===================\n\r\n\r");
+
 	preempt_enable();
-
-	printf("Priority: " + p->priority);
-	printf("State: " + p->state);
-	printf("Conter: " + p->counter);
-	printf("Cpu_Context.x19: " + p->cpu_context.x19);
-	printf("Cpu_Context.x20: " + p->cpu_context.x20);
-	printf("Cpu_Context.pc: " + p->cpu_context.pc);
-	printf("Cpu_Context.sp: " + p->cpu_context.sp);
-
 	return 0;
 }
