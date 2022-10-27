@@ -23,12 +23,12 @@ void handle_timer_irq( void )
 
 void arm_timer_init ( void )
 {
-	put32(ARM_TIMER_LOAD, interval);
-	put32(ARM_TIMER_CONTROL, ARM_TIMER_CTRL_VAL);
+	put32(ARM_TIMER_LOAD, interval);				// Set Timer Value
+	put32(ARM_TIMER_CONTROL, ARM_TIMER_CTRL_VAL);	// Set Timer Control Register
 }
 
 void handle_arm_timer_irq ( void )
 {
-	put32(ARM_TIMER_IRQ_CA, 1);
+	put32(ARM_TIMER_IRQ_CA, 1);						// Clear the Interupt
 	printf("ARM Timer Interrupt Recieved\n\r");
 }

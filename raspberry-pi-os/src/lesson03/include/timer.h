@@ -4,6 +4,7 @@
 void timer_init ( void );
 void handle_timer_irq ( void );
 
+// Arm Timer Functions
 void arm_timer_init( void );
 void handle_arm_timer_irq( void );
 
