@@ -63,7 +63,7 @@ void putc ( void* p, char c)
 
 void handle_uart_irq( void )
 {
-	char c = uart_recv();
-	uart_send(c);
+	char c = uart_recv(); 		// get letter from receive buffer
+	uart_send(c);				// put letter onto transmit bufffer
 	uart_send_string("\n\r");
 }

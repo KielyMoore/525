@@ -29,7 +29,7 @@ const char *entry_error_messages[] = {
 
 void enable_interrupt_controller()
 {
-	put32(ENABLE_IRQS_1, AUX_INT);
+	put32(ENABLE_IRQS_1, AUX_INT); // Enable Auxillary interrupts
 }
 
 void show_invalid_entry_message(int type, unsigned long esr, unsigned long address)
@@ -39,9 +39,9 @@ void show_invalid_entry_message(int type, unsigned long esr, unsigned long addre
 
 void handle_irq(void)
 {
-	unsigned int irq = get32(IRQ_PENDING_1);
+	unsigned int irq = get32(IRQ_PENDING_1); // Read the Pending 1 interrupts
 	switch (irq) {
-		case (AUX_INT):
+		case (AUX_INT):	// Handle Uart Interrupt
 			handle_uart_irq();
 			break;
 		default:

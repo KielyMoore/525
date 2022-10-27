@@ -14,6 +14,7 @@ void kernel_main(void)
 	enable_irq();
 
 	while (1){
+		// Need to free up UART for transmitting/receiving
 		/*uart_send(uart_recv());*/
 	}	
 }
