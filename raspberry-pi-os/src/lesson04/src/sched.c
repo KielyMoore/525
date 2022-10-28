@@ -44,6 +44,7 @@ void _schedule(void)
 		}
 	}
 	if(task[next] != current){
+		// Print State of nest Task before switching
 		printf("schedule switched to %d\r\n", next);
 		printf("\n\r===== Task: %d =====\n\r", next);
 		printf("* Address: 0x%08x\n\r", task[next]);

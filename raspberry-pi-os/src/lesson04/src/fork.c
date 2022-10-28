@@ -23,7 +23,7 @@ int copy_process(unsigned long fn, unsigned long arg)
 	int pid = nr_tasks++;
 	task[pid] = p;	
 	
-
+	// Print initial state of Task
 	printf("\n\r===== Task: %d =====\n\r", pid);
 	printf("* Address: 0x%08x\n\r", p);
 	switch (p->state)
