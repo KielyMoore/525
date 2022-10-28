@@ -2,6 +2,7 @@
 #include "sched.h"
 #include "entry.h"
 
+// last argument to assing priority, dictates how long the task stays in the cpu
 int copy_process(unsigned long fn, unsigned long arg, unsigned long priority)
 {
 	preempt_disable();
@@ -10,7 +11,7 @@ int copy_process(unsigned long fn, unsigned long arg, unsigned long priority)
 	p = (struct task_struct *) get_free_page();
 	if (!p)
 		return 1;
-	p->priority = priority;
+	p->priority = priority; // Assign task priority
 	p->state = TASK_RUNNING;
 	p->counter = p->priority;
 	p->preempt_count = 1; //disable preemtion until schedule_tail
