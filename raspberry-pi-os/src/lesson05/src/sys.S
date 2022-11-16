@@ -34,6 +34,12 @@ call_sys_clone:
 	beq	thread_start
 	ret
 
+.global call_sys_priority
+call_sys_priority:
+	mov w8, #SYS_PRIORITY_NUMBER
+	svc #0
+	ret
+
 thread_start:
 	mov	x29, 0
 

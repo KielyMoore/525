@@ -17,6 +17,7 @@ void user_process1(char *array)
 			delay(100000);
 		}
 	}
+
 }
 
 void user_process(){
@@ -42,7 +43,9 @@ void user_process(){
 	if (err < 0){
 		printf("Error while clonning process 2\n\r");
 		return;
-	} 
+	}
+	
+	call_sys_priority(err, 0xF);
 	call_sys_exit();
 }
 
