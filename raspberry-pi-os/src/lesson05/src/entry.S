@@ -11,6 +11,13 @@
 	b	err_hang
 	.endm
 
+	.macro handle_data_abort el
+	kernel_entry \el
+	mrs x0, esr_el1
+	mrs x1, far_el1
+	bl show_data_abort_message
+	.endm
+
 	.macro	ventry	label
 	.align	7
 	b	\label
@@ -90,7 +97,7 @@ vectors:
 	ventry	fiq_invalid_el1t			// FIQ EL1t
 	ventry	error_invalid_el1t			// Error EL1t
 
-	ventry	sync_invalid_el1h			// Synchronous EL1h
+	ventry	el1_sync				// Synchronous EL1h
 	ventry	el1_irq					// IRQ EL1h
 	ventry	fiq_invalid_el1h			// FIQ EL1h
 	ventry	error_invalid_el1h			// Error EL1h
@@ -149,6 +156,18 @@ el1_irq:
 	bl	handle_irq
 	kernel_exit 1 
 
+el1_sync:
+	kernel_entry 1
+	mrs	x25, esr_el1
+	lsr	x24, x25, #ESR_ELx_EC_SHIFT
+	cmp	x24, #ESR_ELx_EC_DABT_CUR
+	b.eq	el1_da
+	handle_invalid_entry 0, SYNC_ERROR
+
+el1_da:
+	handle_data_abort 1
+	kernel_exit 1
+
 el0_irq:
 	kernel_entry 0 
 	bl	handle_irq
@@ -177,6 +196,7 @@ el0_svc:
 	ldr	x16, [stbl, scno, lsl #3]		// address in the syscall table
 	blr	x16					// call sys_* routine
 	b	ret_from_syscall
+
 ni_sys:
 	handle_invalid_entry 0, SYSCALL_ERROR
 ret_from_syscall:

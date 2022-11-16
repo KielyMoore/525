@@ -15,7 +15,9 @@ void user_process1(char *array)
 			buf[0] = array[i];
 			call_sys_write(buf);
 			delay(100000);
-		}
+		}    
+		//attempt to access system register
+		printf("%d\n\r", get_el());
 	}
 }
 
@@ -42,7 +44,7 @@ void user_process(){
 	if (err < 0){
 		printf("Error while clonning process 2\n\r");
 		return;
-	} 
+	}
 	call_sys_exit();
 }
 
